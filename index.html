@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Economía Interestelar · Comunidad y tienda creativa</title>
+  <meta name="description" content="Economía Interestelar: comunidad, artistas y piezas 3D inspiradas en la exploración espacial.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=Orbitron:wght@500..900&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <!-- PORTAL -->
+  <section class="portal" id="portal" aria-label="Portal de entrada">
+    <video class="portal-video" data-portal-video autoplay muted loop playsinline poster="">
+      <source src="assets/video/portal-loop.mp4" type="video/mp4">
+    </video>
+    <div class="portal-scrim" aria-hidden="true"></div>
+    <div class="portal-content">
+      <img class="portal-logo" src="assets/images/950fcc52-c7f6-4d1f-bd30-138826aa9918-cop-f1b26b25.png" alt="Logotipo de Economía Interestelar" width="220" height="220">
+      <p class="eyebrow">Tienda online</p>
+      <h1 class="portal-title">Economía Interestelar</h1>
+      <button class="button button-enter" type="button" data-enter>ENTRAR</button>
+      <button class="skip-intro" type="button" data-skip-intro>Omitir transición</button>
+    </div>
+  </section>
+
+  <!-- ESTACIÓN: acceso a la navegación -->
+  <div class="station" data-station>
+    <button class="station-button" type="button" aria-expanded="false" aria-controls="station-menu" aria-label="Abrir menú de navegación" data-station-toggle>
+      <img src="assets/images/estacion-espacial.webp" alt="" class="station-image" onerror="this.style.display='none'">
+      <svg class="station-fallback" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="jupiter-body" cx="35%" cy="32%" r="70%">
+            <stop offset="0%" stop-color="#f6e7c8"/>
+            <stop offset="55%" stop-color="#c9a27a"/>
+            <stop offset="100%" stop-color="#5b3f2e"/>
+          </radialGradient>
+          <linearGradient id="jupiter-ring" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#d9c7a6" stop-opacity="0"/>
+            <stop offset="50%" stop-color="#e8dcc4" stop-opacity="0.85"/>
+            <stop offset="100%" stop-color="#d9c7a6" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <g class="planet-ring-back">
+          <ellipse cx="60" cy="60" rx="54" ry="13" fill="none" stroke="url(#jupiter-ring)" stroke-width="5"/>
+        </g>
+        <circle cx="60" cy="60" r="34" fill="url(#jupiter-body)"/>
+        <path d="M27 50 Q60 46 93 50 M26 62 Q60 58 94 62 M28 72 Q60 69 92 72" fill="none" stroke="#8a5f42" stroke-width="2" opacity="0.45"/>
+        <ellipse cx="72" cy="68" rx="5" ry="3" fill="#b5533c" opacity="0.7"/>
+        <g class="planet-ring-front">
+          <ellipse cx="60" cy="60" rx="54" ry="13" fill="none" stroke="url(#jupiter-ring)" stroke-width="5" clip-path="url(#front-half)"/>
+        </g>
+        <clipPath id="front-half"><rect x="0" y="60" width="120" height="60"/></clipPath>
+      </svg>
+    </button>
+    <nav class="station-menu" id="station-menu" aria-label="Principal" data-station-menu hidden>
+      <ul>
+        <li><a href="#tienda" data-route="tienda">Tienda</a></li>
+        <li><a href="#comunidad" data-route="comunidad">Economía Interestelar</a></li>
+        <li><a href="#acerca" data-route="acerca">Acerca de nosotros</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main id="main">
+    <!-- TIENDA -->
+    <section class="view" id="tienda" data-view="tienda" aria-labelledby="tienda-title">
+      <div class="container">
+        <header class="view-head">
+          <p class="eyebrow">Catálogo</p>
+          <h2 class="view-title" id="tienda-title">Piezas de la galaxia</h2>
+          <p class="notice" data-store-notice>Tienda en modo catálogo. Las compras están desactivadas hasta contar con autorización escrita.</p>
+        </header>
+
+        <div class="store-tools">
+          <label class="field-inline">
+            <span>Buscar</span>
+            <input type="search" data-search placeholder="Nombre o artista">
+          </label>
+          <label class="field-inline">
+            <span>Categoría</span>
+            <select data-filter-category><option value="">Todas</option></select>
+          </label>
+          <label class="field-inline">
+            <span>Artista</span>
+            <select data-filter-artist><option value="">Todos</option></select>
+          </label>
+        </div>
+
+        <p class="status" role="status" data-catalog-status>Cargando catálogo…</p>
+        <ul class="catalog" role="list" data-catalog></ul>
+
+        <nav class="pager" aria-label="Paginación del catálogo" data-pager></nav>
+      </div>
+    </section>
+
+    <!-- FICHA DE PRODUCTO -->
+    <section class="view" id="pieza" data-view="pieza" aria-labelledby="pieza-title" hidden>
+      <div class="container">
+        <button class="button button-secondary button-small" type="button" data-back>← Volver al catálogo</button>
+        <header class="product-banner" aria-hidden="false">
+          <span class="banner-planet" aria-hidden="true"></span>
+          <span class="banner-moon" aria-hidden="true"></span>
+          <p class="eyebrow">Pieza</p>
+        </header>
+        <div class="product-viewer" data-viewer>
+          <model-viewer class="viewer-model" data-model alt="Modelo 3D de la pieza" camera-controls auto-rotate touch-action="pan-y" hidden></model-viewer>
+          <img class="viewer-fallback" data-viewer-fallback alt="" hidden>
+          <p class="viewer-message" data-viewer-message>Modelo 3D no disponible.</p>
+        </div>
+        <div class="product-sheet">
+          <h2 class="product-name" id="pieza-title" data-product-name></h2>
+          <p class="product-artist" data-product-artist></p>
+          <p class="product-desc" data-product-desc></p>
+          <div class="product-actions" data-product-actions></div>
+          <p class="black-hole price" data-product-price hidden></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ECONOMÍA INTERESTELAR / DISCORD -->
+    <section class="view" id="comunidad" data-view="comunidad" aria-labelledby="comunidad-title" hidden>
+      <div class="container">
+        <header class="view-head">
+          <p class="eyebrow">Federación</p>
+          <h2 class="view-title" id="comunidad-title">Economía Interestelar</h2>
+          <p>Una federación de creadores que explora el universo con piezas, historias y encuentros. Texto provisional: sustituir por la descripción real.</p>
+        </header>
+        <div class="community-grid">
+          <figure class="frame"><img src="assets/images/comunidad-1.webp" alt="Imagen de la comunidad" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty')"></figure>
+          <figure class="frame"><img src="assets/images/comunidad-2.webp" alt="Imagen de la comunidad" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-empty')"></figure>
+        </div>
+        <div class="discord-box">
+          <h3>Únete al Discord</h3>
+          <p>Descuento del 1 % para miembros: pendiente de configurar. El descuento solo se aplicará cuando la validación del rol esté integrada en el servidor.</p>
+          <a class="button button-primary" href="#" data-discord hidden target="_blank" rel="noopener">Unirse al Discord</a>
+          <p class="status" data-discord-note>Enlace de invitación no configurado.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACERCA DE NOSOTROS -->
+    <section class="view" id="acerca" data-view="acerca" aria-labelledby="acerca-title" hidden>
+      <div class="container">
+        <header class="view-head">
+          <p class="eyebrow">Historia</p>
+          <h2 class="view-title" id="acerca-title">Acerca de nosotros</h2>
+        </header>
+        <div class="video-frame">
+          <video controls preload="metadata" poster="" aria-label="Historia de Economía Interestelar">
+            <source src="assets/video/historia.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="about-text">
+          <p class="provisional">[Texto provisional] Descripción de la comunidad, su propósito y sus artistas. Reemplazar por el texto real.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- PANEL DE ADMINISTRACIÓN -->
+  <section class="admin" hidden data-admin aria-labelledby="admin-title">
+    <div class="container">
+      <h2 id="admin-title">Administración</h2>
+      <p>Las compras están desactivadas. Para habilitarlas, marcar la casilla solo después de obtener autorización escrita y revisar los términos.</p>
+      <label class="check"><input type="checkbox" data-admin-sales> Habilitar ventas (requiere autorización escrita)</label>
+      <label class="check"><input type="checkbox" data-admin-price> Mostrar precios</label>
+      <label class="field-inline"><span>Enlace de invitación al Discord</span><input type="url" data-admin-discord placeholder="https://discord.gg/…"></label>
+      <p>Productos, imágenes, GLB, descripciones, atribución y confirmación de derechos se editan en el archivo <code>script.js</code> (lista <code>PRODUCTS</code>). Cada producto requiere confirmación de derechos.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p><strong>Economía Interestelar</strong> es un proyecto creativo independiente. No está afiliado, aprobado ni patrocinado por Hello Games. Texto editable.</p>
+      <p><a href="terminos.html">Términos y derechos</a></p>
+    </div>
+  </footer>
+
+  <button class="admin-toggle" type="button" data-admin-toggle>Admin</button>
+</body>
+</html>
